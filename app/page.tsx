@@ -25,6 +25,18 @@ export default function Home() {
   const [diveDeeper, setDiveDeeper] = useState(false);
   const [page3, setPage3] = useState(false);
   const [page4, setPage4] = useState(false);
+  const [page5, setPage5] = useState(false);
+  const [loopCount, setLoopCount] = useState(0);
+
+  const handleLoop = () => {
+    setLoopCount(prev => prev + 1);
+    gsap.to(".dive-flash", { opacity: 1, duration: 1.5, ease: "power2.in",
+      onComplete: () => {
+        window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+        gsap.to(".dive-flash", { opacity: 0, duration: 2, delay: 0.5 });
+      }
+    });
+  };
 
   useEffect(() => {
     if (entered) {
@@ -328,6 +340,52 @@ export default function Home() {
               <div className="text-white text-[2vw] scribble-text glow-text" style={{ opacity: 0.5 }}>it was always just this</div>
             </div>
             <div className="h-[40vh]" />
+            {/* Page 4 → Page 5 */}
+            <div className="relative z-[9999] h-[100vh] flex flex-col items-center justify-center gap-8" style={{ pointerEvents: "auto" }}>
+              <div className="text-white text-[1.2vw] tracking-[0.3em]" style={{ opacity: 0.25 }}>last one</div>
+              <button onClick={() => diveToSection(setPage5, ".act-five")} className="dive-btn text-white text-[12px] tracking-[0.3em] uppercase px-14 py-5 bg-transparent mt-6" style={{ cursor: "pointer", pointerEvents: "auto", zIndex: 99999 }}>finish it</button>
+            </div>
+          </div>
+
+          {/* === PAGE 5 — The Return (Loop) === */}
+          <div className="act-five relative z-10" style={{ display: page5 ? "block" : "none" }}>
+            <div className="h-[60vh]" />
+            <div className="relative h-[80vh] flex items-center justify-center">
+              <div className="text-white text-[6vw] scribble-text" style={{ opacity: 0.15, filter: "blur(2px)" }}>I had a name for this once</div>
+            </div>
+            <div className="h-[40vh]" />
+            <div className="relative h-[80vh] flex items-center justify-center">
+              <div className="text-white text-[4vw] scribble-text" style={{ opacity: 0.12, filter: "blur(1px)" }}>the fridge hums at night</div>
+            </div>
+            <div className="h-[40vh]" />
+            <div className="relative h-[60vh] flex items-center justify-center">
+              <div className="text-white text-[5vw] scribble-text glitch" style={{ opacity: 0.2 }}>SOMETHING WAS SUPPOSED TO HAPPEN</div>
+            </div>
+            <div className="h-[60vh]" />
+            <div className="relative h-[100vh] flex items-center justify-center">
+              <div className="text-center">
+                <div className="text-white text-[3vw] scribble-text glow-text" style={{ opacity: 0.6 }}>oh</div>
+                <div className="text-white text-[1.5vw] mt-10" style={{ opacity: 0.25 }}>it&apos;s a loop</div>
+              </div>
+            </div>
+            <div className="h-[40vh]" />
+            <div className="relative h-[120vh]">
+              {["who wrote this", "why did you keep scrolling", "what were you looking for", "did you find it", "would you know if you did", "is this the first time", "how would you know"].map((q, i) => (
+                <div key={q} className="absolute scribble-text" style={{ left: `${12 + (i * 13) % 50}%`, top: `${i * 13 + 4}%`, fontSize: `${1.6 + (i % 2) * 0.6}vw`, opacity: 0.2 + (i % 3) * 0.1, transform: `rotate(${((i * 3) % 7) - 3}deg)`, color: "white" }}>{q}</div>
+              ))}
+            </div>
+            <div className="h-[60vh]" />
+            <div className="relative h-[100vh] flex items-center justify-center">
+              <div className="text-center">
+                <div className="text-white text-[10vw] scribble-text glow-strong" style={{ opacity: 0.9 }}>.</div>
+                <div className="text-white text-[1vw] tracking-[0.5em] mt-10" style={{ opacity: 0.15 }}>{loopCount === 0 ? "the beginning" : `loop ${loopCount + 1}`}</div>
+              </div>
+            </div>
+            <div className="h-[30vh]" />
+            <div className="relative z-[9999] h-[80vh] flex flex-col items-center justify-center gap-6" style={{ pointerEvents: "auto" }}>
+              <div className="text-white text-[1vw] tracking-[0.4em]" style={{ opacity: 0.2 }}>{loopCount === 0 ? "again?" : `again. (${loopCount + 1})`}</div>
+              <button onClick={handleLoop} className="dive-btn text-white text-[11px] tracking-[0.3em] uppercase px-12 py-5 bg-transparent mt-4" style={{ cursor: "pointer", pointerEvents: "auto", zIndex: 99999 }}>↺</button>
+            </div>
           </div>
         </>
       )}
