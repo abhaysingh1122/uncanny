@@ -99,7 +99,7 @@ export default function Home() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#050510] cursor-pointer" onClick={() => setEntered(true)}>
           <div className="text-center">
             <div className="text-white text-[10px] tracking-[0.5em] uppercase flicker">
-              enter the void
+              are you sure
             </div>
           </div>
         </div>
@@ -151,8 +151,8 @@ export default function Home() {
             className="relative h-[100vh] flex flex-col items-center justify-center gap-8"
             style={{ zIndex: 9999, position: "relative", pointerEvents: "auto" }}
           >
-            <div className="text-white text-[2.5vw] tracking-[0.3em] glow-strong" style={{ opacity: 0.9 }}>
-              this is where most people stop
+            <div className="text-white text-[2vw] tracking-[0.3em] glow-text scribble-text" style={{ opacity: 0.6 }}>
+              there&apos;s more
             </div>
             <button
               onClick={handleDive}
@@ -161,102 +161,107 @@ export default function Home() {
             >
               keep going
             </button>
-            <div className="text-white text-[11px] tracking-[0.2em] mt-8 glow-text" style={{ opacity: 0.4 }}>
-              you were warned
+            <div className="text-white text-[11px] tracking-[0.2em] mt-8" style={{ opacity: 0.25 }}>
+              (or don&apos;t)
             </div>
           </div>
 
           {/* === ACT TWO — The Deep === */}
           <div className="act-two relative z-10" style={{ display: diveDeeper ? "block" : "none" }}>
-              {/* Inversion — white text gets bolder, more raw */}
-              <div className="h-[50vh]" />
+              {/* Emptiness first — let the black breathe */}
+              <div className="h-[80vh]" />
 
+              {/* The realization — just "oh" */}
               <div className="relative h-[100vh] flex items-center justify-center">
                 <div className="text-center">
-                  <div className="text-white text-[12vw] font-bold glow-strong scribble-text" style={{ opacity: 0.9 }}>
-                    further
+                  <div className="text-white text-[12vw] scribble-text glow-strong" style={{ opacity: 0.8 }}>
+                    oh
                   </div>
                 </div>
               </div>
 
-              <div className="h-[30vh]" />
+              <div className="h-[60vh]" />
 
+              {/* The notebook — someone trying to pin something down */}
               <div className="relative h-[80vh] flex items-center justify-center">
-                <div className="text-white text-[2vw] tracking-[0.2em] text-center leading-relaxed" style={{ opacity: 0.7, maxWidth: "60vw" }}>
-                  <span className="block mb-8 scribble-text text-[4vw] glow-text">here&apos;s the thing</span>
-                  <span className="block" style={{ opacity: 0.6 }}>the ones who scroll this far</span>
-                  <span className="block mt-2" style={{ opacity: 0.5 }}>are the ones who build things</span>
-                  <span className="block mt-2" style={{ opacity: 0.4 }}>that didn&apos;t exist before</span>
-                  <span className="block mt-6 scribble-text text-[2.5vw] glow-text" style={{ opacity: 0.7 }}>that&apos;s not nothing. that&apos;s everything.</span>
+                <div className="text-white text-center leading-loose" style={{ maxWidth: "60vw" }}>
+                  <span className="block scribble-text text-[3vw] glow-text" style={{ opacity: 0.6 }}>I wrote this down somewhere</span>
+                  <span className="block mt-8 scribble-text text-[2.5vw]" style={{ opacity: 0.4, textDecoration: "line-through", textDecorationColor: "rgba(255,255,255,0.4)" }}>the answer</span>
+                  <span className="block mt-4 scribble-text text-[2.5vw]" style={{ opacity: 0.35, textDecoration: "line-through", textDecorationColor: "rgba(255,255,255,0.35)" }}>the question</span>
+                  <span className="block mt-8 scribble-text text-[3vw] glow-text" style={{ opacity: 0.7 }}>the feeling of almost knowing</span>
                 </div>
               </div>
 
               <div className="h-[50vh]" />
 
-              <div className="relative h-[100vh] flex items-center justify-center">
-                <div className="text-center">
-                  <div className="scribble-text text-[8vw] glow-strong" style={{ opacity: 0.8 }}>
-                    still here?
-                  </div>
-                  <div className="scribble-text text-[10vw] glow-strong mt-4" style={{ opacity: 0.95 }}>
-                    good.
-                  </div>
-                </div>
-              </div>
-
-              <div className="h-[50vh]" />
-
-              {/* Rapid fire fragments */}
+              {/* Marginalia — scattered like notes in margins of a used book */}
               <div className="relative h-[150vh]">
-                {["create", "destroy", "forget", "remember", "lose", "find", "break", "heal", "fall", "rise"].map((word, i) => (
+                {[
+                  { word: "tuesday", scratch: false },
+                  { word: "check again", scratch: false },
+                  { word: "no", scratch: true },
+                  { word: "the blue one", scratch: false },
+                  { word: "was it always like this", scratch: false },
+                  { word: "look up", scratch: false },
+                  { word: "don't", scratch: false },
+                  { word: "4th floor", scratch: false },
+                  { word: "someone was here", scratch: true },
+                  { word: "almost", scratch: false },
+                ].map((item, i) => (
                   <div
-                    key={word}
-                    className="absolute scribble-text glow-text"
+                    key={item.word}
+                    className="absolute scribble-text"
                     style={{
-                      left: `${10 + (i % 3) * 30 + Math.random() * 10}%`,
-                      top: `${i * 10}%`,
-                      fontSize: `${3 + Math.random() * 4}vw`,
-                      opacity: 0.5 + Math.random() * 0.4,
-                      transform: `rotate(${(Math.random() - 0.5) * 20}deg)`,
+                      left: `${8 + (i % 4) * 22 + (i * 7) % 13}%`,
+                      top: `${i * 9 + 3}%`,
+                      fontSize: `${1.4 + (i % 3) * 0.8}vw`,
+                      opacity: 0.2 + (i % 3) * 0.15,
+                      transform: `rotate(${((i * 7) % 11) - 5}deg)`,
                       color: "white",
+                      textDecoration: item.scratch ? "line-through" : "none",
+                      textDecorationColor: "rgba(255,255,255,0.3)",
                     }}
                   >
-                    {word}
+                    {item.word}
                   </div>
                 ))}
               </div>
 
-              <div className="h-[30vh]" />
+              <div className="h-[40vh]" />
 
-              {/* The final truth */}
+              {/* The honest ending */}
               <div className="relative h-[100vh] flex items-center justify-center">
                 <div className="text-center">
-                  <div className="text-white text-[2.5vw] tracking-[0.5em] glow-strong" style={{ opacity: 0.85 }}>
-                    now go build something
+                  <div className="text-white text-[2.5vw] tracking-[0.15em] glow-text scribble-text" style={{ opacity: 0.65 }}>
+                    I don&apos;t know what this is
+                  </div>
+                  <div className="text-white text-[2.5vw] tracking-[0.15em] glow-text scribble-text mt-6" style={{ opacity: 0.55 }}>
+                    and neither do you
                   </div>
                 </div>
               </div>
 
-              <div className="h-[30vh]" />
+              <div className="h-[40vh]" />
 
-              {/* Signature scribble */}
-              <div className="relative h-[80vh] flex items-center justify-center">
-                <svg viewBox="0 0 300 100" className="w-[40vw] max-w-[400px]" fill="none" style={{ opacity: 0.6 }}>
+              {/* Signature scribble — anonymous mark */}
+              <div className="relative h-[60vh] flex items-center justify-center">
+                <svg viewBox="0 0 300 100" className="w-[40vw] max-w-[400px]" fill="none" style={{ opacity: 0.4 }}>
                   <path
                     d="M20 70 C40 20, 60 80, 80 50 C100 20, 120 80, 140 45 C160 10, 180 70, 200 40 C220 10, 240 60, 260 35 C270 25, 280 30, 285 28"
                     stroke="white"
                     strokeWidth="1.5"
                     strokeLinecap="round"
-                    style={{ filter: "drop-shadow(0 0 4px rgba(255,255,255,0.3))" }}
+                    style={{ filter: "drop-shadow(0 0 4px rgba(255,255,255,0.2))" }}
                   />
                 </svg>
               </div>
 
-              <div className="h-[20vh]" />
+              <div className="h-[30vh]" />
 
-              <div className="relative h-[50vh] flex items-end justify-center pb-20">
-                <div className="text-white text-[12px] tracking-[1em] uppercase glow-text" style={{ opacity: 0.3 }}>
-                  fin
+              {/* The ending — not "fin", just a whisper that doesn't close anything */}
+              <div className="relative h-[40vh] flex items-end justify-center pb-20">
+                <div className="text-white text-[10px] tracking-[0.6em]" style={{ opacity: 0.15 }}>
+                  still here
                 </div>
               </div>
             </div>

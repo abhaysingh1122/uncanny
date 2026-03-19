@@ -80,7 +80,7 @@ export default function WTFMoment() {
               textShadow: "0 0 30px rgba(255,0,30,0.8), 0 0 60px rgba(255,0,30,0.4), 0 0 120px rgba(255,0,30,0.2)",
             }}
           >
-            WAKE UP
+            DID YOU FEEL THAT
           </div>
         </div>
       </div>
