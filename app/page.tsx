@@ -111,8 +111,7 @@ export default function Home() {
       {entered && (
         <>
           <ColorShift />
-          <AmbientSound />
-          <WTFMoment />
+          {/* AmbientSound and WTFMoment removed — will add proper versions later */}
           <div className="geo-figure-wrapper" style={{ opacity: 0 }}><GeometricFigure /></div>
           <ConstellationReveal />
           <TextToCreature />
@@ -153,17 +152,17 @@ export default function Home() {
             style={{ zIndex: 9999, position: "relative", pointerEvents: "auto" }}
           >
             <div className="text-white text-[2.5vw] tracking-[0.3em] glow-strong" style={{ opacity: 0.9 }}>
-              you&apos;ve reached the edge
+              this is where most people stop
             </div>
             <button
               onClick={handleDive}
               className="dive-btn text-white text-[16px] tracking-[0.3em] uppercase px-20 py-8 bg-transparent mt-10"
               style={{ cursor: "pointer", pointerEvents: "auto", zIndex: 99999 }}
             >
-              dive deeper ?
+              keep going
             </button>
             <div className="text-white text-[11px] tracking-[0.2em] mt-8 glow-text" style={{ opacity: 0.4 }}>
-              there is no going back
+              you were warned
             </div>
           </div>
 
@@ -175,7 +174,7 @@ export default function Home() {
               <div className="relative h-[100vh] flex items-center justify-center">
                 <div className="text-center">
                   <div className="text-white text-[12vw] font-bold glow-strong scribble-text" style={{ opacity: 0.9 }}>
-                    deeper
+                    further
                   </div>
                 </div>
               </div>
@@ -184,11 +183,11 @@ export default function Home() {
 
               <div className="relative h-[80vh] flex items-center justify-center">
                 <div className="text-white text-[2vw] tracking-[0.2em] text-center leading-relaxed" style={{ opacity: 0.7, maxWidth: "60vw" }}>
-                  <span className="block mb-8 scribble-text text-[4vw] glow-text">the truth is</span>
-                  <span className="block opacity-50">there was never a beginning</span>
-                  <span className="block opacity-40 mt-2">and there will never be an end</span>
-                  <span className="block opacity-30 mt-2">just the space between</span>
-                  <span className="block opacity-20 mt-2">where you pretend to exist</span>
+                  <span className="block mb-8 scribble-text text-[4vw] glow-text">here&apos;s the thing</span>
+                  <span className="block" style={{ opacity: 0.6 }}>the ones who scroll this far</span>
+                  <span className="block mt-2" style={{ opacity: 0.5 }}>are the ones who build things</span>
+                  <span className="block mt-2" style={{ opacity: 0.4 }}>that didn&apos;t exist before</span>
+                  <span className="block mt-6 scribble-text text-[2.5vw] glow-text" style={{ opacity: 0.7 }}>that&apos;s not nothing. that&apos;s everything.</span>
                 </div>
               </div>
 
@@ -197,10 +196,10 @@ export default function Home() {
               <div className="relative h-[100vh] flex items-center justify-center">
                 <div className="text-center">
                   <div className="scribble-text text-[8vw] glow-strong" style={{ opacity: 0.8 }}>
-                    are you still
+                    still here?
                   </div>
                   <div className="scribble-text text-[10vw] glow-strong mt-4" style={{ opacity: 0.95 }}>
-                    looking?
+                    good.
                   </div>
                 </div>
               </div>
@@ -233,7 +232,7 @@ export default function Home() {
               <div className="relative h-[100vh] flex items-center justify-center">
                 <div className="text-center">
                   <div className="text-white text-[2.5vw] tracking-[0.5em] glow-strong" style={{ opacity: 0.85 }}>
-                    the void stares back
+                    now go build something
                   </div>
                 </div>
               </div>

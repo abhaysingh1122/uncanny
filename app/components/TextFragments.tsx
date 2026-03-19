@@ -19,50 +19,50 @@ interface Fragment {
 }
 
 const fragments: Fragment[] = [
-  // Phase 1: Birth
+  // Phase 1: Birth — single dot
   { text: ".", x: "49%", y: "110vh", size: "10vw", rotate: 0, font: "", opacity: 1, glow: true },
 
-  // Phase 2: Scatter
-  { text: "scattered", x: "18%", y: "210vh", size: "6vw", rotate: -12, font: "scribble-text", opacity: 0.7, glow: true },
-  { text: "into", x: "58%", y: "225vh", size: "3vw", rotate: 5, font: "scribble-text", opacity: 0.5 },
-  { text: "a thousand", x: "30%", y: "245vh", size: "4vw", rotate: -3, font: "scribble-text", opacity: 0.6 },
-  { text: "pieces", x: "62%", y: "265vh", size: "5vw", rotate: 8, font: "scribble-text", opacity: 0.65, glow: true },
-  { text: "that don't remember being whole", x: "12%", y: "290vh", size: "1.4vw", rotate: 0, font: "", opacity: 0.25 },
+  // Phase 2: Scatter — chaos
+  { text: "fragmented", x: "18%", y: "310vh", size: "6vw", rotate: -12, font: "scribble-text", opacity: 0.7, glow: true },
+  { text: "split", x: "58%", y: "325vh", size: "3vw", rotate: 5, font: "scribble-text", opacity: 0.5 },
+  { text: "into a million", x: "30%", y: "345vh", size: "4vw", rotate: -3, font: "scribble-text", opacity: 0.6 },
+  { text: "versions", x: "62%", y: "365vh", size: "5vw", rotate: 8, font: "scribble-text", opacity: 0.65, glow: true },
+  { text: "none of them complete", x: "12%", y: "390vh", size: "1.4vw", rotate: 0, font: "", opacity: 0.3 },
 
-  // Phase 3: Assembly
-  { text: "trying", x: "22%", y: "370vh", size: "5vw", rotate: -5, font: "scribble-text", opacity: 0.6 },
-  { text: "to become", x: "40%", y: "395vh", size: "6vw", rotate: 2, font: "scribble-text", opacity: 0.7, glow: true },
-  { text: "something", x: "50%", y: "430vh", size: "7vw", rotate: -1, font: "scribble-text", opacity: 0.75, glow: true },
+  // Phase 3: Assembly — forming
+  { text: "assembling", x: "22%", y: "470vh", size: "5vw", rotate: -5, font: "scribble-text", opacity: 0.6 },
+  { text: "from nothing", x: "40%", y: "500vh", size: "6vw", rotate: 2, font: "scribble-text", opacity: 0.7, glow: true },
+  { text: "into something", x: "50%", y: "540vh", size: "7vw", rotate: -1, font: "scribble-text", opacity: 0.75, glow: true },
 
-  // Phase 4: Creation
-  { text: "i build", x: "15%", y: "520vh", size: "7vw", rotate: -8, font: "scribble-text", opacity: 0.8, glow: true },
-  { text: "i break", x: "48%", y: "555vh", size: "7vw", rotate: 4, font: "scribble-text", opacity: 0.6, scratch: true },
-  { text: "i build again", x: "25%", y: "600vh", size: "5vw", rotate: -2, font: "scribble-text", opacity: 0.85, glow: true },
-  { text: "and again", x: "60%", y: "620vh", size: "3vw", rotate: 3, font: "", opacity: 0.4 },
-  { text: "and again", x: "68%", y: "635vh", size: "2vw", rotate: -1, font: "", opacity: 0.25 },
-  { text: "and again", x: "74%", y: "645vh", size: "1.2vw", rotate: 2, font: "", opacity: 0.12 },
+  // Phase 4: Creation — the maker
+  { text: "make", x: "15%", y: "630vh", size: "7vw", rotate: -8, font: "scribble-text", opacity: 0.8, glow: true },
+  { text: "destroy", x: "48%", y: "665vh", size: "7vw", rotate: 4, font: "scribble-text", opacity: 0.6, scratch: true },
+  { text: "make better", x: "25%", y: "710vh", size: "5vw", rotate: -2, font: "scribble-text", opacity: 0.85, glow: true },
+  { text: "repeat", x: "60%", y: "730vh", size: "3vw", rotate: 3, font: "", opacity: 0.4 },
+  { text: "repeat", x: "68%", y: "745vh", size: "2vw", rotate: -1, font: "", opacity: 0.25 },
+  { text: "repeat", x: "74%", y: "755vh", size: "1.2vw", rotate: 2, font: "", opacity: 0.12 },
 
-  // Phase 5: The Noise
-  { text: "the noise", x: "8%", y: "720vh", size: "2.5vw", rotate: 1, font: "", opacity: 0.45 },
-  { text: "the noise", x: "28%", y: "735vh", size: "3vw", rotate: -2, font: "", opacity: 0.55 },
-  { text: "the noise", x: "52%", y: "728vh", size: "2vw", rotate: 3, font: "", opacity: 0.4 },
-  { text: "the noise", x: "72%", y: "740vh", size: "2.8vw", rotate: -1, font: "", opacity: 0.5 },
-  { text: "THE NOISE", x: "20%", y: "770vh", size: "6vw", rotate: -3, font: "scribble-text", opacity: 0.8, className: "glitch" },
-  { text: "NEVER", x: "42%", y: "810vh", size: "8vw", rotate: 2, font: "scribble-text", opacity: 0.9, glow: true },
-  { text: "STOPS", x: "35%", y: "860vh", size: "10vw", rotate: -5, font: "scribble-text", opacity: 0.85, glow: true },
+  // Phase 5: The Noise — overwhelm
+  { text: "too loud", x: "8%", y: "850vh", size: "2.5vw", rotate: 1, font: "", opacity: 0.45 },
+  { text: "too fast", x: "28%", y: "865vh", size: "3vw", rotate: -2, font: "", opacity: 0.55 },
+  { text: "too much", x: "52%", y: "858vh", size: "2vw", rotate: 3, font: "", opacity: 0.4 },
+  { text: "too late", x: "72%", y: "870vh", size: "2.8vw", rotate: -1, font: "", opacity: 0.5 },
+  { text: "OVERLOAD", x: "20%", y: "900vh", size: "6vw", rotate: -3, font: "scribble-text", opacity: 0.8, className: "glitch" },
+  { text: "CAN'T", x: "42%", y: "940vh", size: "8vw", rotate: 2, font: "scribble-text", opacity: 0.9, glow: true },
+  { text: "STOP", x: "35%", y: "990vh", size: "10vw", rotate: -5, font: "scribble-text", opacity: 0.85, glow: true },
 
   // Phase 6: Revelation
-  { text: "what if", x: "28%", y: "970vh", size: "3vw", rotate: 0, font: "", opacity: 0.5, glow: true },
-  { text: "the pieces were never", x: "18%", y: "1000vh", size: "2.5vw", rotate: -1, font: "", opacity: 0.45 },
-  { text: "meant to fit", x: "40%", y: "1030vh", size: "4vw", rotate: 1, font: "scribble-text", opacity: 0.7, glow: true },
+  { text: "maybe", x: "28%", y: "1100vh", size: "3vw", rotate: 0, font: "", opacity: 0.5, glow: true },
+  { text: "the broken parts", x: "18%", y: "1130vh", size: "2.5vw", rotate: -1, font: "", opacity: 0.45 },
+  { text: "are the design", x: "40%", y: "1160vh", size: "4vw", rotate: 1, font: "scribble-text", opacity: 0.7, glow: true },
 
-  // Phase 7: Constellation
-  { text: "but they made", x: "25%", y: "1150vh", size: "2.5vw", rotate: 0, font: "", opacity: 0.5 },
-  { text: "something", x: "38%", y: "1175vh", size: "3.5vw", rotate: 0, font: "scribble-text", opacity: 0.6, glow: true },
-  { text: "beautiful", x: "42%", y: "1205vh", size: "5vw", rotate: -1, font: "scribble-text", opacity: 0.8, glow: true },
+  // Phase 7: Constellation — clarity
+  { text: "look closer", x: "25%", y: "1280vh", size: "2.5vw", rotate: 0, font: "", opacity: 0.5 },
+  { text: "there's a", x: "38%", y: "1310vh", size: "3.5vw", rotate: 0, font: "scribble-text", opacity: 0.6, glow: true },
+  { text: "pattern", x: "42%", y: "1345vh", size: "5vw", rotate: -1, font: "scribble-text", opacity: 0.8, glow: true },
 
   // Phase 8: Silence
-  { text: "silence", x: "43%", y: "1350vh", size: "3vw", rotate: 0, font: "", opacity: 0.4, glow: true },
+  { text: "—", x: "48%", y: "1500vh", size: "3vw", rotate: 0, font: "", opacity: 0.4, glow: true },
 ];
 
 export default function TextFragments() {
