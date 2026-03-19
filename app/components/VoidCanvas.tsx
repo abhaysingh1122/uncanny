@@ -1,8 +1,9 @@
 "use client";
 import { useRef, useMemo, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { EffectComposer, Bloom, ChromaticAberration, Noise } from "@react-three/postprocessing";
-import { BlendFunction } from "postprocessing";
+// Post-processing disabled — crashed GPU
+// import { EffectComposer, Bloom, ChromaticAberration, Noise } from "@react-three/postprocessing";
+// import { BlendFunction } from "postprocessing";
 import * as THREE from "three";
 import { createNoise3D } from "simplex-noise";
 
@@ -11,7 +12,7 @@ const mousePos = { x: 0, y: 0 };
 
 // === PARTICLES (background) ===
 function Particles() {
-  const count = 2000;
+  const count = 1000;
   const mesh = useRef<THREE.Points>(null);
 
   const positions = useMemo(() => {
@@ -106,7 +107,7 @@ function WireframeCreature() {
 
   return (
     <mesh ref={meshRef} position={[0, 0, 0]}>
-      <icosahedronGeometry ref={geoRef} args={[1, 3]} />
+      <icosahedronGeometry ref={geoRef} args={[1, 2]} />
       <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0} depthWrite={false} />
     </mesh>
   );
@@ -318,9 +319,15 @@ function FloatingShapes() {
 export default function VoidCanvas() {
   return (
     <div className="fixed inset-0 z-0">
-      <Canvas camera={{ position: [0, 0, 15], fov: 65 }} gl={{ antialias: true, alpha: true }}>
+      <Canvas
+        camera={{ position: [0, 0, 15], fov: 65 }}
+        gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}
+        onCreated={({ gl }) => {
+          gl.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+        }}
+      >
         <color attach="background" args={["#050510"]} />
-        <fog attach="fog" args={["#050510", 5, 50]} />
+        <fog attach="fog" args={["#050510", 8, 50]} />
 
         <ambientLight intensity={0.1} />
         <pointLight position={[0, 5, 10]} intensity={0.4} color="#6666ff" />
@@ -332,21 +339,7 @@ export default function VoidCanvas() {
         <CameraController />
         <MouseTracker />
 
-        <EffectComposer>
-          <Bloom
-            luminanceThreshold={0.3}
-            luminanceSmoothing={0.5}
-            intensity={0.8}
-          />
-          <ChromaticAberration
-            blendFunction={BlendFunction.NORMAL}
-            offset={new THREE.Vector2(0.0015, 0.0015)}
-          />
-          <Noise
-            blendFunction={BlendFunction.OVERLAY}
-            opacity={0.08}
-          />
-        </EffectComposer>
+        {/* Post-processing disabled — crashed GPU on this machine */}
       </Canvas>
     </div>
   );
