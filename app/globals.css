@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Scribble';
+  src: local('Segoe Print'), local('Comic Sans MS'), local('cursive');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: none;
+}
+
+html {
+  background: #050510;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+body {
+  background: #050510;
+  min-height: 100vh;
+  font-family: 'Courier New', monospace;
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+.scribble-text {
+  font-family: 'Segoe Print', 'Comic Sans MS', cursive;
+}
+
+.glitch {
+  animation: glitch 0.15s infinite;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); text-shadow: 2px 0 #ff0040, -2px 0 #0ff; }
+  25% { transform: translate(-3px, 2px); text-shadow: -2px 0 #ff0040, 2px 0 #0ff; }
+  50% { transform: translate(2px, -2px); text-shadow: 2px 0 #0ff, -2px 0 #ff0040; }
+  75% { transform: translate(-1px, 1px); text-shadow: -1px 0 #ff0040, 1px 0 #0ff; }
+  100% { transform: translate(0); text-shadow: 2px 0 #ff0040, -2px 0 #0ff; }
+}
+
+.flicker {
+  animation: flicker 3s infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 0.6; }
+  41% { opacity: 0.6; }
+  42% { opacity: 0.1; }
+  43% { opacity: 0.6; }
+  45% { opacity: 0.2; }
+  46% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  91% { opacity: 0.05; }
+  92% { opacity: 0.6; }
+}
+
+.scratch-line {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+  height: 1px;
+  position: fixed;
+  width: 100vw;
+  z-index: 20;
+  animation: scratch 6s infinite linear;
+  pointer-events: none;
+}
+
+@keyframes scratch {
+  0% { top: -10%; }
+  100% { top: 110%; }
+}
+
+.glow-text {
+  text-shadow: 0 0 10px rgba(255,255,255,0.3), 0 0 40px rgba(255,255,255,0.1), 0 0 80px rgba(255,255,255,0.05);
+}
+
+.glow-strong {
+  text-shadow: 0 0 15px rgba(255,255,255,0.5), 0 0 50px rgba(255,255,255,0.2), 0 0 100px rgba(255,255,255,0.1);
+}
+
+.pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.5); }
+}
+
+.dive-btn {
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.5s ease;
+  backdrop-filter: blur(4px);
+}
+
+.dive-btn:hover {
+  border-color: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 0 30px rgba(255,255,255,0.1), 0 0 60px rgba(255,255,255,0.05);
+  transform: scale(1.05);
+  letter-spacing: 0.4em;
+}
