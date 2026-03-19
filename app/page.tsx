@@ -23,6 +23,7 @@ const VoidCanvas = dynamic(() => import("./components/VoidCanvas"), {
 export default function Home() {
   const [entered, setEntered] = useState(false);
   const [diveDeeper, setDiveDeeper] = useState(false);
+  const [page3, setPage3] = useState(false);
 
   useEffect(() => {
     if (entered) {
@@ -62,22 +63,15 @@ export default function Home() {
     return () => { ScrollTrigger.getAll().forEach((t) => t.kill()); };
   }, [entered]);
 
-  const handleDive = () => {
-    setDiveDeeper(true);
-    // Flash to black, then scroll to act two
+  const diveToSection = (showFn: (v: boolean) => void, selector: string) => {
+    showFn(true);
     gsap.fromTo(".dive-flash", { opacity: 0 }, {
-      opacity: 1,
-      duration: 0.8,
-      ease: "power2.in",
+      opacity: 1, duration: 0.6, ease: "power2.in",
       onComplete: () => {
-        // Wait a tick for React to render act-two
         setTimeout(() => {
-          const actTwo = document.querySelector(".act-two");
-          if (actTwo) {
-            const y = actTwo.getBoundingClientRect().top + window.scrollY;
-            window.scrollTo({ top: y, behavior: "instant" as ScrollBehavior });
-          }
-          gsap.to(".dive-flash", { opacity: 0, duration: 2, delay: 0.5 });
+          const el = document.querySelector(selector);
+          if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY, behavior: "instant" as ScrollBehavior });
+          gsap.to(".dive-flash", { opacity: 0, duration: 1.5, delay: 0.3 });
         }, 100);
       }
     });
@@ -155,7 +149,7 @@ export default function Home() {
               there&apos;s more
             </div>
             <button
-              onClick={handleDive}
+              onClick={() => diveToSection(setDiveDeeper, ".act-two")}
               className="dive-btn text-white text-[16px] tracking-[0.3em] uppercase px-20 py-8 bg-transparent mt-10"
               style={{ cursor: "pointer", pointerEvents: "auto", zIndex: 99999 }}
             >
@@ -258,13 +252,43 @@ export default function Home() {
 
               <div className="h-[30vh]" />
 
-              {/* The ending — not "fin", just a whisper that doesn't close anything */}
-              <div className="relative h-[40vh] flex items-end justify-center pb-20">
-                <div className="text-white text-[10px] tracking-[0.6em]" style={{ opacity: 0.15 }}>
-                  still here
-                </div>
+              {/* Page 2 → Page 3 */}
+              <div className="relative z-[9999] h-[100vh] flex flex-col items-center justify-center gap-8" style={{ pointerEvents: "auto" }}>
+                <div className="text-white text-[1.8vw] tracking-[0.3em] glow-text scribble-text" style={{ opacity: 0.5 }}>it gets stranger</div>
+                <button onClick={() => diveToSection(setPage3, ".act-three")} className="dive-btn text-white text-[14px] tracking-[0.3em] uppercase px-16 py-6 bg-transparent mt-8" style={{ cursor: "pointer", pointerEvents: "auto", zIndex: 99999 }}>further still</button>
               </div>
             </div>
+
+          {/* === PAGE 3 — The Underneath === */}
+          <div className="act-three relative z-10" style={{ display: page3 ? "block" : "none" }}>
+            <div className="h-[60vh]" />
+            <div className="relative h-[100vh] flex items-center justify-center">
+              <div className="text-white text-[8vw] scribble-text glow-strong" style={{ opacity: 0.7 }}>wait</div>
+            </div>
+            <div className="h-[40vh]" />
+            <div className="relative h-[80vh] flex items-center justify-center">
+              <div className="text-white text-center leading-loose" style={{ maxWidth: "55vw" }}>
+                <span className="block text-[2.5vw] scribble-text glow-text" style={{ opacity: 0.6 }}>have you been here before</span>
+                <span className="block mt-10 text-[1.8vw]" style={{ opacity: 0.35 }}>the particles look familiar</span>
+                <span className="block mt-4 text-[1.8vw]" style={{ opacity: 0.25 }}>the dark looks familiar</span>
+                <span className="block mt-4 text-[1.8vw]" style={{ opacity: 0.15 }}>you look familiar</span>
+              </div>
+            </div>
+            <div className="h-[50vh]" />
+            <div className="relative h-[120vh]">
+              {["this sentence has appeared before", "or has it", "you're not sure", "and that's the point", "certainty is a kind of sleep", "you're awake now", "aren't you"].map((text, i) => (
+                <div key={text} className="absolute scribble-text glow-text" style={{ left: `${15 + (i * 11) % 55}%`, top: `${i * 13 + 5}%`, fontSize: `${1.5 + (i % 3) * 0.7}vw`, opacity: 0.25 + (i % 4) * 0.12, transform: `rotate(${((i * 5) % 9) - 4}deg)`, color: "white" }}>{text}</div>
+              ))}
+            </div>
+            <div className="h-[40vh]" />
+            <div className="relative h-[100vh] flex items-center justify-center">
+              <div className="text-center">
+                <div className="text-white text-[3vw] tracking-[0.2em] glow-text" style={{ opacity: 0.6 }}>the screen is a mirror</div>
+                <div className="text-white text-[1.5vw] tracking-[0.2em] mt-8" style={{ opacity: 0.2 }}>and mirrors don&apos;t answer questions</div>
+              </div>
+            </div>
+            <div className="h-[40vh]" />
+          </div>
         </>
       )}
     </main>
