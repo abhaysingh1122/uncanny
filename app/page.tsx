@@ -24,6 +24,7 @@ export default function Home() {
   const [entered, setEntered] = useState(false);
   const [diveDeeper, setDiveDeeper] = useState(false);
   const [page3, setPage3] = useState(false);
+  const [page4, setPage4] = useState(false);
 
   useEffect(() => {
     if (entered) {
@@ -286,6 +287,45 @@ export default function Home() {
                 <div className="text-white text-[3vw] tracking-[0.2em] glow-text" style={{ opacity: 0.6 }}>the screen is a mirror</div>
                 <div className="text-white text-[1.5vw] tracking-[0.2em] mt-8" style={{ opacity: 0.2 }}>and mirrors don&apos;t answer questions</div>
               </div>
+            </div>
+            <div className="h-[40vh]" />
+            {/* Page 3 → Page 4 */}
+            <div className="relative z-[9999] h-[100vh] flex flex-col items-center justify-center gap-8" style={{ pointerEvents: "auto" }}>
+              <div className="text-white text-[1.5vw] tracking-[0.3em]" style={{ opacity: 0.35 }}>almost there</div>
+              <button onClick={() => diveToSection(setPage4, ".act-four")} className="dive-btn text-white text-[14px] tracking-[0.3em] uppercase px-16 py-6 bg-transparent mt-8" style={{ cursor: "pointer", pointerEvents: "auto", zIndex: 99999 }}>one more</button>
+              <div className="text-white text-[9px] tracking-[0.2em] mt-4" style={{ opacity: 0.12 }}>(almost where?)</div>
+            </div>
+          </div>
+
+          {/* === PAGE 4 — The Core === */}
+          <div className="act-four relative z-10" style={{ display: page4 ? "block" : "none" }}>
+            <div className="h-[80vh]" />
+            <div className="relative h-[60vh] flex items-center justify-center">
+              <div className="text-white text-[16vw] scribble-text" style={{ opacity: 0.06 }}>breathe</div>
+            </div>
+            <div className="h-[80vh]" />
+            <div className="relative h-[60vh] flex items-center justify-center">
+              <div className="text-white text-[3vw] tracking-[1em]" style={{ opacity: 0.3 }}>. . .</div>
+            </div>
+            <div className="h-[60vh]" />
+            <div className="relative h-[80vh] flex items-center justify-center">
+              <div className="text-center leading-loose">
+                <div className="text-white text-[2vw] scribble-text" style={{ opacity: 0.4 }}>a thought without a thinker</div>
+                <div className="text-white text-[2vw] scribble-text mt-6" style={{ opacity: 0.3 }}>a question without words</div>
+                <div className="text-white text-[2vw] scribble-text mt-6" style={{ opacity: 0.2 }}>a scroll without an end</div>
+              </div>
+            </div>
+            <div className="h-[60vh]" />
+            <div className="relative h-[80vh] flex items-center justify-center">
+              <div className="pulse-glow" style={{ width: "8px", height: "8px", background: "white", borderRadius: "50%", boxShadow: "0 0 20px rgba(255,255,255,0.4), 0 0 60px rgba(255,255,255,0.1)" }} />
+            </div>
+            <div className="h-[40vh]" />
+            <div className="relative h-[60vh] flex items-center justify-center">
+              <div className="text-white text-[1.2vw] tracking-[0.4em]" style={{ opacity: 0.2 }}>the dot from the beginning</div>
+            </div>
+            <div className="h-[30vh]" />
+            <div className="relative h-[60vh] flex items-center justify-center">
+              <div className="text-white text-[2vw] scribble-text glow-text" style={{ opacity: 0.5 }}>it was always just this</div>
             </div>
             <div className="h-[40vh]" />
           </div>
