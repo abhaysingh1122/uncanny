@@ -1,9 +1,8 @@
 "use client";
 import { useRef, useMemo, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-// Post-processing disabled — crashed GPU
-// import { EffectComposer, Bloom, ChromaticAberration, Noise } from "@react-three/postprocessing";
-// import { BlendFunction } from "postprocessing";
+import { EffectComposer, Bloom, ChromaticAberration, Noise } from "@react-three/postprocessing";
+import { BlendFunction } from "postprocessing";
 import * as THREE from "three";
 import { createNoise3D } from "simplex-noise";
 
@@ -12,7 +11,7 @@ const mousePos = { x: 0, y: 0 };
 
 // === PARTICLES (background) ===
 function Particles() {
-  const count = 1000;
+  const count = 2500;
   const mesh = useRef<THREE.Points>(null);
 
   const positions = useMemo(() => {
@@ -99,15 +98,15 @@ function WireframeCreature() {
     meshRef.current.rotation.y = time * 0.15 + mousePos.x * 0.3;
     meshRef.current.rotation.x = mousePos.y * 0.2;
 
-    // Visibility — BIGGER and more visible
+    // Visibility
     const mat = meshRef.current.material as THREE.MeshBasicMaterial;
-    mat.opacity = visibleRef.current * 0.8;
-    meshRef.current.scale.setScalar(visibleRef.current * 4);
+    mat.opacity = visibleRef.current * 0.6;
+    meshRef.current.scale.setScalar(visibleRef.current * 2.5);
   });
 
   return (
     <mesh ref={meshRef} position={[0, 0, 0]}>
-      <icosahedronGeometry ref={geoRef} args={[1, 2]} />
+      <icosahedronGeometry ref={geoRef} args={[1, 4]} />
       <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0} depthWrite={false} />
     </mesh>
   );
@@ -230,104 +229,13 @@ function MouseTracker() {
   return null;
 }
 
-// === FLOATING SHAPES — visual anchors between text ===
-function FloatingShapes() {
-  const group1 = useRef<THREE.Mesh>(null);
-  const group2 = useRef<THREE.Mesh>(null);
-  const group3 = useRef<THREE.Mesh>(null);
-  const group4 = useRef<THREE.Mesh>(null);
-  const scrollRef = useRef(0);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const scrollY = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      scrollRef.current = scrollY / docHeight;
-    };
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useFrame((state) => {
-    const time = state.clock.elapsedTime;
-    const scroll = scrollRef.current;
-
-    // Torus — visible 10-30%
-    if (group1.current) {
-      const vis = scroll > 0.08 && scroll < 0.32 ? 1 : 0;
-      const mat = group1.current.material as THREE.MeshBasicMaterial;
-      mat.opacity += (vis * 0.4 - mat.opacity) * 0.05;
-      group1.current.rotation.x = time * 0.3;
-      group1.current.rotation.y = time * 0.2;
-      group1.current.position.set(5 + Math.sin(time * 0.2) * 2, Math.cos(time * 0.15) * 2, -5);
-    }
-
-    // Octahedron — visible 35-55%
-    if (group2.current) {
-      const vis = scroll > 0.33 && scroll < 0.57 ? 1 : 0;
-      const mat = group2.current.material as THREE.MeshBasicMaterial;
-      mat.opacity += (vis * 0.5 - mat.opacity) * 0.05;
-      group2.current.rotation.x = time * 0.2;
-      group2.current.rotation.z = time * 0.15;
-      group2.current.position.set(-6 + Math.sin(time * 0.15) * 1.5, Math.cos(time * 0.2) * 2, -3);
-    }
-
-    // Torus Knot — visible 55-75%
-    if (group3.current) {
-      const vis = scroll > 0.53 && scroll < 0.77 ? 1 : 0;
-      const mat = group3.current.material as THREE.MeshBasicMaterial;
-      mat.opacity += (vis * 0.35 - mat.opacity) * 0.05;
-      group3.current.rotation.y = time * 0.25;
-      group3.current.rotation.z = time * 0.1;
-      group3.current.position.set(4 + Math.cos(time * 0.12) * 2, -1 + Math.sin(time * 0.18) * 1.5, -6);
-    }
-
-    // Icosahedron — visible 75-95%
-    if (group4.current) {
-      const vis = scroll > 0.73 && scroll < 0.97 ? 1 : 0;
-      const mat = group4.current.material as THREE.MeshBasicMaterial;
-      mat.opacity += (vis * 0.4 - mat.opacity) * 0.05;
-      group4.current.rotation.x = time * 0.15;
-      group4.current.rotation.y = time * 0.3;
-      group4.current.position.set(-4 + Math.sin(time * 0.1) * 2, 2 + Math.cos(time * 0.15) * 1, -4);
-    }
-  });
-
-  return (
-    <>
-      <mesh ref={group1}>
-        <torusGeometry args={[1.5, 0.05, 16, 60]} />
-        <meshBasicMaterial color="#6688ff" wireframe transparent opacity={0} depthWrite={false} />
-      </mesh>
-      <mesh ref={group2}>
-        <octahedronGeometry args={[1.8, 0]} />
-        <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0} depthWrite={false} />
-      </mesh>
-      <mesh ref={group3}>
-        <torusKnotGeometry args={[1, 0.3, 100, 8]} />
-        <meshBasicMaterial color="#8866ff" wireframe transparent opacity={0} depthWrite={false} />
-      </mesh>
-      <mesh ref={group4}>
-        <icosahedronGeometry args={[1.5, 1]} />
-        <meshBasicMaterial color="#ff6688" wireframe transparent opacity={0} depthWrite={false} />
-      </mesh>
-    </>
-  );
-}
-
 // === MAIN CANVAS ===
 export default function VoidCanvas() {
   return (
     <div className="fixed inset-0 z-0">
-      <Canvas
-        camera={{ position: [0, 0, 15], fov: 65 }}
-        gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}
-        onCreated={({ gl }) => {
-          gl.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-        }}
-      >
+      <Canvas camera={{ position: [0, 0, 15], fov: 65 }} gl={{ antialias: true, alpha: true }} dpr={[1, 1.5]}>
         <color attach="background" args={["#050510"]} />
-        <fog attach="fog" args={["#050510", 8, 50]} />
+        <fog attach="fog" args={["#050510", 5, 50]} />
 
         <ambientLight intensity={0.1} />
         <pointLight position={[0, 5, 10]} intensity={0.4} color="#6666ff" />
@@ -339,7 +247,21 @@ export default function VoidCanvas() {
         <CameraController />
         <MouseTracker />
 
-        {/* Post-processing disabled — crashed GPU on this machine */}
+        <EffectComposer>
+          <Bloom
+            luminanceThreshold={0.1}
+            luminanceSmoothing={0.9}
+            intensity={1.2}
+          />
+          <ChromaticAberration
+            blendFunction={BlendFunction.NORMAL}
+            offset={new THREE.Vector2(0.0015, 0.0015)}
+          />
+          <Noise
+            blendFunction={BlendFunction.OVERLAY}
+            opacity={0.08}
+          />
+        </EffectComposer>
       </Canvas>
     </div>
   );
