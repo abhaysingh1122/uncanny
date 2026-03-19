@@ -11,7 +11,7 @@ const mousePos = { x: 0, y: 0 };
 
 // === PARTICLES (background) ===
 function Particles() {
-  const count = 4000;
+  const count = 2000;
   const mesh = useRef<THREE.Points>(null);
 
   const positions = useMemo(() => {
@@ -106,7 +106,7 @@ function WireframeCreature() {
 
   return (
     <mesh ref={meshRef} position={[0, 0, 0]}>
-      <icosahedronGeometry ref={geoRef} args={[1, 4]} />
+      <icosahedronGeometry ref={geoRef} args={[1, 3]} />
       <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0} depthWrite={false} />
     </mesh>
   );
@@ -329,15 +329,14 @@ export default function VoidCanvas() {
         <Particles />
         <TubeFlyThrough />
         <WireframeCreature />
-        <FloatingShapes />
         <CameraController />
         <MouseTracker />
 
         <EffectComposer>
           <Bloom
-            luminanceThreshold={0.1}
-            luminanceSmoothing={0.9}
-            intensity={1.2}
+            luminanceThreshold={0.3}
+            luminanceSmoothing={0.5}
+            intensity={0.8}
           />
           <ChromaticAberration
             blendFunction={BlendFunction.NORMAL}

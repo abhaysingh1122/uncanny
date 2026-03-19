@@ -6,7 +6,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CustomCursor from "./components/CustomCursor";
 import TextFragments from "./components/TextFragments";
 import ColorShift from "./components/ColorShift";
-import WTFMoment from "./components/WTFMoment";
+// WTFMoment disabled — fires at wrong time
+// import WTFMoment from "./components/WTFMoment";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,7 +45,7 @@ export default function Home() {
       <CustomCursor />
       <VoidCanvas />
       <ColorShift />
-      <WTFMoment />
+      {/* WTFMoment disabled — fires at wrong time */}
 
       {/* Scratch lines */}
       <div className="scratch-line" style={{ animationDelay: "0s" }} />
@@ -53,7 +54,11 @@ export default function Home() {
 
       {/* Entry */}
       {!entered && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#050510] cursor-pointer" onClick={() => setEntered(true)}>
+        <div
+          className="fixed top-0 left-0 w-screen h-screen z-[9999] flex items-center justify-center cursor-pointer"
+          style={{ background: "#050510" }}
+          onClick={() => setEntered(true)}
+        >
           <div className="text-white text-[10px] tracking-[0.5em] uppercase flicker">
             are you sure
           </div>
