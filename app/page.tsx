@@ -9,6 +9,10 @@ import ScribbleOverlay from "./components/ScribbleOverlay";
 import GeometricFigure from "./components/GeometricFigure";
 import ConstellationReveal from "./components/ConstellationReveal";
 import TextToCreature from "./components/TextToCreature";
+import ColorShift from "./components/ColorShift";
+import ScribbleCreature from "./components/ScribbleCreature";
+import WTFMoment from "./components/WTFMoment";
+import AmbientSound from "./components/AmbientSound";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -45,6 +49,12 @@ export default function Home() {
     gsap.to(".phase-constellation-container", {
       opacity: 1,
       scrollTrigger: { trigger: ".phase-constellation", start: "top 80%", end: "top 40%", scrub: 1 },
+    });
+
+    // Creature appears
+    gsap.to(".creature-wrapper", {
+      opacity: 1,
+      scrollTrigger: { trigger: ".phase-creature", start: "top 80%", end: "top 50%", scrub: 1 },
     });
 
     // No scroll animation on dive section — just let it be visible
@@ -100,9 +110,13 @@ export default function Home() {
 
       {entered && (
         <>
+          <ColorShift />
+          <AmbientSound />
+          <WTFMoment />
           <div className="geo-figure-wrapper" style={{ opacity: 0 }}><GeometricFigure /></div>
           <ConstellationReveal />
           <TextToCreature />
+          <div className="creature-wrapper" style={{ opacity: 0 }}><ScribbleCreature /></div>
           <TextFragments />
 
           {/* === ACT ONE === */}
@@ -119,6 +133,14 @@ export default function Home() {
           <div className="phase-scatter relative z-10 h-[130vh]" />
           <div className="phase-assembly relative z-10 h-[160vh]" />
           <div className="phase-creation relative z-10 h-[160vh]" />
+
+          {/* Scribbled creature draws itself */}
+          <div className="phase-creature relative z-10 h-[180vh]" />
+          {/* Creature walks */}
+          <div className="phase-creature-walk relative z-10 h-[120vh]" />
+          {/* Creature dissolves */}
+          <div className="phase-creature-dissolve relative z-10 h-[80vh]" />
+
           <div className="phase-glitch relative z-10 h-[160vh]" />
           <div className="phase-shatter relative z-10 h-[130vh]" />
           <div className="phase-constellation relative z-10 h-[160vh]" />
