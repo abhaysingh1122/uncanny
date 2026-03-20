@@ -106,7 +106,7 @@ export default function CosmicFigure({ progress = 0 }: { progress: number }) {
       const ix = i * 3;
       // Lerp between scattered and body
       const noise = Math.sin(t * 0.5 + i * 0.01) * 0.1 * (1 - morphProgress * 0.7);
-      arr[ix] = scattered[ix] + (bodyPositions[ix] - scatteredPositions[ix]) * morphProgress + noise;
+      arr[ix] = scatteredPositions[ix] + (bodyPositions[ix] - scatteredPositions[ix]) * morphProgress + noise;
       arr[ix + 1] = scatteredPositions[ix + 1] + (bodyPositions[ix + 1] - scatteredPositions[ix + 1]) * morphProgress + noise * 0.5;
       arr[ix + 2] = scatteredPositions[ix + 2] + (bodyPositions[ix + 2] - scatteredPositions[ix + 2]) * morphProgress + noise;
 
