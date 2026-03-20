@@ -3,6 +3,7 @@ import { useRef, useMemo, useEffect, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { createNoise3D } from "simplex-noise";
+import ScrollPhenomena from "./ScrollPhenomena";
 
 const noise3D = createNoise3D();
 const mousePos = { x: 0, y: 0 };
@@ -470,6 +471,7 @@ export default function VoidCanvas() {
         <FloatingShapes />
         <TubeFlyThrough />
         <WireframeCreature />
+        <ScrollPhenomena />
         <CameraController />
         <MouseTracker />
 
