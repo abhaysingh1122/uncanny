@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import SmoothScrollWrapper from "./components/SmoothScroll";
 
 export const metadata: Metadata = {
   title: ".",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <SmoothScrollWrapper>{children}</SmoothScrollWrapper>
+      </body>
     </html>
   );
 }
